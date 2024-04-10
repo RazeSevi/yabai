@@ -1,6 +1,10 @@
-#neofetch | lolcat
+if ! command -v lolcat &> /dev/null; then
+  neofetch
+else
+  neofetch | lolcat
+fi
 #neofetch
-clear
+#clear
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -11,9 +15,17 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#JAVA
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home
+export JAVA_HOME
+export PATH=$PATH:$JAVA_HOME/bin
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="$PATH:/Users/chris/flutter/bin"
+export PATH="$PATH:/Users/chris/Documents/projects/private/development/flutter/bin"
 export LS_COLORS="$LS_COLORS:di=1;36:ln=4;93:ex=38;5;172:*.desktop=4;34:*.md=4;95:*.tar.gz=0;37:*.py=0;33:*.pdf=38;5;141:*.lua=0;94:*.sh=0;32;:*.txt=38;5;253:*.cfg=38;5;184:fi=0;37:"
+export GROOVY_HOME="/opt/homebrew/opt/groovy/libexec"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -110,7 +122,8 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias code="code-insiders"
-alias open="code-insiders"
+#alias open="code-insiders"
+alias gates="bash ~/startGates.sh"
 alias search="google"
 alias vim="nvim"
 alias python="python3"
@@ -121,7 +134,13 @@ alias ls='gls --group-directories-first --color=auto'
 #alias ls -lah='gls -lah --group-directories-first --color=auto'
 alias detach="tmux detach"
 alias cl="clear"
-alias lc="clear"
-
+alias c="clear && neofetch | lolcat"
+alias ta="tmux a -t $(date '+%A')"
+alias tn="tmux new -s $(date '+%A') || tmux a -t $(date '+%A')"
+alias lsd="ls -lh --time-style=+%D | grep $(date +%D)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
